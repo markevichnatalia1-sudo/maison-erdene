@@ -1,0 +1,522 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <title>Maison Erdene — Mongolian Cashmere</title>
+  <style>
+    :root {
+      --cream: #f5f0e8;
+      --beige: #e7dccd;
+      --espresso: #2c1f1a;
+      --charcoal: #121212;
+      --gold: #b89a62;
+      --ivory: #fcf9f4;
+      --max-width: 1240px;
+      --ease: cubic-bezier(0.22, 1, 0.36, 1);
+    }
+
+    * {
+      box-sizing: border-box;
+      margin: 0;
+      padding: 0;
+    }
+
+    html {
+      scroll-behavior: smooth;
+    }
+
+    body {
+      font-family: "Times New Roman", "Baskerville", "Garamond", serif;
+      background: var(--ivory);
+      color: var(--espresso);
+      line-height: 1.6;
+      letter-spacing: 0.01em;
+      overflow-x: hidden;
+    }
+
+    img {
+      width: 100%;
+      height: 100%;
+      object-fit: cover;
+      display: block;
+    }
+
+    a {
+      color: inherit;
+      text-decoration: none;
+    }
+
+    .container {
+      width: min(92%, var(--max-width));
+      margin: 0 auto;
+    }
+
+    .nav-wrap {
+      position: fixed;
+      top: 0;
+      left: 0;
+      width: 100%;
+      z-index: 30;
+      backdrop-filter: blur(8px);
+      background: color-mix(in srgb, var(--ivory) 78%, transparent);
+      border-bottom: 1px solid color-mix(in srgb, var(--gold) 30%, transparent);
+    }
+
+    nav {
+      height: 86px;
+      display: flex;
+      align-items: center;
+      justify-content: space-between;
+      gap: 1rem;
+    }
+
+    .brand {
+      display: flex;
+      flex-direction: column;
+      line-height: 1.1;
+      min-width: max-content;
+    }
+
+    .brand .name {
+      font-size: clamp(1.1rem, 2.2vw, 1.5rem);
+      letter-spacing: 0.2em;
+      text-transform: uppercase;
+    }
+
+    .brand .sub {
+      font-size: 0.7rem;
+      text-transform: uppercase;
+      letter-spacing: 0.24em;
+      color: color-mix(in srgb, var(--espresso) 70%, var(--gold));
+      margin-top: 0.3rem;
+    }
+
+    .nav-links {
+      display: flex;
+      gap: clamp(1rem, 2vw, 2.1rem);
+      list-style: none;
+      text-transform: uppercase;
+      letter-spacing: 0.12em;
+      font-size: 0.78rem;
+    }
+
+    .nav-links a {
+      position: relative;
+      padding-bottom: 0.15rem;
+      transition: color 260ms var(--ease);
+    }
+
+    .nav-links a::after {
+      content: "";
+      position: absolute;
+      left: 0;
+      bottom: 0;
+      width: 100%;
+      height: 1px;
+      background: var(--gold);
+      transform: scaleX(0);
+      transform-origin: right;
+      transition: transform 350ms var(--ease);
+    }
+
+    .nav-links a:hover {
+      color: var(--gold);
+    }
+
+    .nav-links a:hover::after {
+      transform: scaleX(1);
+      transform-origin: left;
+    }
+
+    .hero {
+      min-height: 100svh;
+      position: relative;
+      margin-top: 86px;
+      isolation: isolate;
+      background: #1c130f;
+    }
+
+    .hero img {
+      position: absolute;
+      inset: 0;
+      z-index: -2;
+      filter: brightness(0.56) saturate(0.86);
+      animation: slowZoom 16s var(--ease) infinite alternate;
+    }
+
+    .hero::after {
+      content: "";
+      position: absolute;
+      inset: 0;
+      background: linear-gradient(180deg, rgba(20, 13, 10, 0.44) 15%, rgba(20, 13, 10, 0.75) 100%);
+      z-index: -1;
+    }
+
+    .hero-content {
+      min-height: calc(100svh - 86px);
+      display: grid;
+      align-content: end;
+      padding: clamp(4rem, 8vw, 7rem) 0;
+      color: #fdf7f0;
+      gap: 1.2rem;
+    }
+
+    .eyebrow {
+      text-transform: uppercase;
+      letter-spacing: 0.24em;
+      font-size: 0.72rem;
+      color: color-mix(in srgb, #fff 74%, var(--gold));
+    }
+
+    h1 {
+      font-size: clamp(2.3rem, 7vw, 6rem);
+      line-height: 0.92;
+      font-weight: 500;
+      letter-spacing: 0.02em;
+      max-width: 12ch;
+      text-wrap: balance;
+    }
+
+    .hero-copy {
+      max-width: 50ch;
+      font-size: clamp(0.95rem, 1.4vw, 1.1rem);
+      color: color-mix(in srgb, #fff 88%, var(--beige));
+    }
+
+    .btn {
+      display: inline-flex;
+      align-items: center;
+      justify-content: center;
+      padding: 0.85rem 1.8rem;
+      text-transform: uppercase;
+      letter-spacing: 0.15em;
+      font-size: 0.72rem;
+      border: 1px solid color-mix(in srgb, var(--gold) 64%, #fff);
+      color: #fff;
+      background: color-mix(in srgb, var(--espresso) 24%, transparent);
+      transition: transform 300ms var(--ease), background 300ms var(--ease), color 300ms var(--ease), box-shadow 300ms var(--ease);
+      width: fit-content;
+    }
+
+    .btn:hover {
+      transform: translateY(-2px);
+      background: var(--gold);
+      color: #1a120f;
+      box-shadow: 0 12px 30px rgba(25, 17, 11, 0.25);
+    }
+
+    section {
+      padding: clamp(4rem, 8vw, 7rem) 0;
+    }
+
+    .section-head {
+      display: flex;
+      justify-content: space-between;
+      align-items: end;
+      gap: 1.6rem;
+      margin-bottom: 2.1rem;
+    }
+
+    h2 {
+      font-size: clamp(1.5rem, 3.8vw, 3rem);
+      line-height: 1;
+      font-weight: 500;
+      letter-spacing: 0.02em;
+    }
+
+    .section-kicker {
+      text-transform: uppercase;
+      letter-spacing: 0.22em;
+      font-size: 0.68rem;
+      color: color-mix(in srgb, var(--espresso) 75%, var(--gold));
+    }
+
+    .campaign-grid {
+      display: grid;
+      grid-template-columns: repeat(3, 1fr);
+      gap: clamp(0.8rem, 1.8vw, 1.3rem);
+    }
+
+    .campaign-card {
+      overflow: hidden;
+      background: var(--beige);
+      min-height: clamp(360px, 48vw, 590px);
+      position: relative;
+    }
+
+    .campaign-card img {
+      transition: transform 900ms var(--ease), filter 700ms var(--ease);
+      filter: contrast(0.95) saturate(0.87);
+    }
+
+    .campaign-card:hover img {
+      transform: scale(1.06);
+      filter: contrast(1) saturate(1);
+    }
+
+    .featured {
+      background: linear-gradient(135deg, var(--cream), #f9f6f1);
+      border-top: 1px solid color-mix(in srgb, var(--gold) 24%, transparent);
+      border-bottom: 1px solid color-mix(in srgb, var(--gold) 24%, transparent);
+    }
+
+    .products {
+      display: grid;
+      grid-template-columns: repeat(3, 1fr);
+      gap: clamp(1rem, 2vw, 1.5rem);
+    }
+
+    .product-card {
+      display: grid;
+      background: #fff;
+      border: 1px solid color-mix(in srgb, var(--gold) 24%, #ccc);
+      transition: transform 360ms var(--ease), box-shadow 360ms var(--ease);
+    }
+
+    .product-card:hover {
+      transform: translateY(-4px);
+      box-shadow: 0 16px 40px rgba(26, 17, 12, 0.11);
+    }
+
+    .product-image {
+      aspect-ratio: 4 / 5;
+      background: #ddd2c4;
+      overflow: hidden;
+    }
+
+    .product-image img {
+      transition: transform 700ms var(--ease);
+    }
+
+    .product-card:hover .product-image img {
+      transform: scale(1.05);
+    }
+
+    .product-body {
+      padding: 1.1rem 1rem 1.25rem;
+      display: grid;
+      gap: 0.2rem;
+    }
+
+    .product-name {
+      font-size: 1rem;
+    }
+
+    .price {
+      letter-spacing: 0.08em;
+      color: color-mix(in srgb, var(--espresso) 76%, var(--gold));
+      font-size: 0.88rem;
+      text-transform: uppercase;
+    }
+
+    .about {
+      display: grid;
+      grid-template-columns: 1.2fr 1fr;
+      gap: clamp(1.5rem, 4vw, 4rem);
+      align-items: start;
+    }
+
+    .about p {
+      font-size: clamp(1rem, 1.3vw, 1.1rem);
+      max-width: 56ch;
+      color: color-mix(in srgb, var(--espresso) 87%, #4b332a);
+    }
+
+    .about-panel {
+      background: var(--charcoal);
+      color: #f4ede3;
+      padding: clamp(1.5rem, 4vw, 2.3rem);
+      border-left: 3px solid var(--gold);
+    }
+
+    .about-panel p {
+      color: color-mix(in srgb, #fff 86%, var(--beige));
+      font-size: 0.98rem;
+    }
+
+    .social {
+      display: flex;
+      flex-wrap: wrap;
+      gap: 0.9rem;
+      margin-top: 1.4rem;
+    }
+
+    .social .btn {
+      color: var(--espresso);
+      background: transparent;
+    }
+
+    .social .btn:hover {
+      color: #17120f;
+      background: var(--gold);
+    }
+
+    footer {
+      background: #100c0a;
+      color: #e9ddcc;
+      padding: 2.4rem 0;
+      border-top: 1px solid color-mix(in srgb, var(--gold) 45%, transparent);
+    }
+
+    .footer-wrap {
+      display: flex;
+      justify-content: space-between;
+      align-items: center;
+      gap: 1rem;
+      flex-wrap: wrap;
+    }
+
+    .footer-links {
+      display: flex;
+      gap: 1.2rem;
+      text-transform: uppercase;
+      letter-spacing: 0.13em;
+      font-size: 0.72rem;
+    }
+
+    @keyframes slowZoom {
+      from { transform: scale(1.02); }
+      to { transform: scale(1.12); }
+    }
+
+    @media (max-width: 980px) {
+      .campaign-grid { grid-template-columns: repeat(2, 1fr); }
+      .products { grid-template-columns: repeat(2, 1fr); }
+      .about { grid-template-columns: 1fr; }
+      nav { height: auto; padding: 1rem 0; align-items: start; flex-direction: column; }
+      .hero { margin-top: 126px; }
+    }
+
+    @media (max-width: 640px) {
+      .nav-links {
+        width: 100%;
+        display: grid;
+        grid-template-columns: repeat(3, 1fr);
+        gap: 0.8rem 0.5rem;
+      }
+      h1 { max-width: 9ch; }
+      .campaign-grid,
+      .products { grid-template-columns: 1fr; }
+      .section-head { flex-direction: column; align-items: start; }
+      .hero-content { padding-bottom: 3.4rem; }
+    }
+  </style>
+</head>
+<body>
+  <header class="nav-wrap">
+    <div class="container">
+      <nav>
+        <a class="brand" href="#">
+          <span class="name">Maison Erdene</span>
+          <span class="sub">Mongolian Cashmere Maison</span>
+        </a>
+        <ul class="nav-links">
+          <li><a href="#women">Women</a></li>
+          <li><a href="#men">Men</a></li>
+          <li><a href="#accessories">Accessories</a></li>
+          <li><a href="#about">About</a></li>
+          <li><a href="#contact">Contact</a></li>
+        </ul>
+      </nav>
+    </div>
+  </header>
+
+  <main>
+    <section class="hero" id="women">
+      <img src="hero.jpg" alt="Maison Erdene campaign portrait" />
+      <div class="container hero-content">
+        <p class="eyebrow">Spring / Summer Capsule 2026</p>
+        <h1>Quiet Power. Noble Cashmere.</h1>
+        <p class="hero-copy">Maison Erdene curates timeless Mongolian cashmere for women and men who value rare materials, discreet elegance, and European atelier refinement.</p>
+        <a href="#collection" class="btn">Discover Collection</a>
+      </div>
+    </section>
+
+    <section id="campaign">
+      <div class="container">
+        <div class="section-head">
+          <div>
+            <p class="section-kicker">Campaign</p>
+            <h2>Cinematic House Signatures</h2>
+          </div>
+          <p class="section-kicker">Maison Erdene / Editorial 01</p>
+        </div>
+        <div class="campaign-grid">
+          <article class="campaign-card"><img src="look1.jpg" alt="Cashmere lookbook editorial one" /></article>
+          <article class="campaign-card"><img src="look2.jpg" alt="Cashmere lookbook editorial two" /></article>
+          <article class="campaign-card"><img src="look3.jpg" alt="Cashmere lookbook editorial three" /></article>
+        </div>
+      </div>
+    </section>
+
+    <section class="featured" id="collection">
+      <div class="container">
+        <div class="section-head">
+          <div>
+            <p class="section-kicker">Featured Collection</p>
+            <h2>Cashmere Essentials</h2>
+          </div>
+          <a class="btn" href="#">View All</a>
+        </div>
+
+        <div class="products" id="men">
+          <article class="product-card">
+            <div class="product-image"><img src="product1.jpg" alt="Cashmere Sweater" /></div>
+            <div class="product-body"><h3 class="product-name">Cashmere Sweater</h3><p class="price">€320</p></div>
+          </article>
+          <article class="product-card">
+            <div class="product-image"><img src="product2.jpg" alt="Cashmere Cardigan" /></div>
+            <div class="product-body"><h3 class="product-name">Cashmere Cardigan</h3><p class="price">€420</p></div>
+          </article>
+          <article class="product-card" id="accessories">
+            <div class="product-image"><img src="product3.jpg" alt="Cashmere Scarf" /></div>
+            <div class="product-body"><h3 class="product-name">Cashmere Scarf</h3><p class="price">€120</p></div>
+          </article>
+          <article class="product-card">
+            <div class="product-image"><img src="product4.jpg" alt="Lounge Set" /></div>
+            <div class="product-body"><h3 class="product-name">Lounge Set</h3><p class="price">€540</p></div>
+          </article>
+          <article class="product-card">
+            <div class="product-image"><img src="product5.jpg" alt="Wool Coat" /></div>
+            <div class="product-body"><h3 class="product-name">Wool Coat</h3><p class="price">€690</p></div>
+          </article>
+          <article class="product-card">
+            <div class="product-image"><img src="product6.jpg" alt="Silk Evening Set" /></div>
+            <div class="product-body"><h3 class="product-name">Silk Evening Set</h3><p class="price">€780</p></div>
+          </article>
+        </div>
+      </div>
+    </section>
+
+    <section id="about">
+      <div class="container about">
+        <div>
+          <p class="section-kicker">Maison Heritage</p>
+          <h2>Born in Mongolia, Refined for the World</h2>
+          <p>Our fibers are sourced from nomadic herding communities in Mongolia where centuries of craftsmanship meet the world’s finest natural cashmere. Each Maison Erdene silhouette is designed with restrained European tailoring and a quiet old-money sensibility—made to be worn for years, not seasons.</p>
+        </div>
+        <aside class="about-panel" id="contact">
+          <p class="section-kicker">Private Client Services</p>
+          <p>Discover exclusive drops, bespoke fittings, and seasonal collaborations via our private circle. Follow our visual diary and request showroom appointments in Paris, Milan, and Ulaanbaatar.</p>
+          <div class="social">
+            <a href="#" class="btn">Instagram</a>
+            <a href="#" class="btn">Collaborations</a>
+          </div>
+        </aside>
+      </div>
+    </section>
+  </main>
+
+  <footer>
+    <div class="container footer-wrap">
+      <p>© 2026 Maison Erdene. All rights reserved.</p>
+      <div class="footer-links">
+        <a href="#">Shipping</a>
+        <a href="#">Returns</a>
+        <a href="#">Privacy</a>
+      </div>
+    </div>
+  </footer>
+</body>
+</html>
