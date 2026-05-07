@@ -26,15 +26,28 @@
     .hero { background: var(--panel); min-height: 640px; overflow: hidden; }
     .hero img { width: 100%; height: 100%; object-fit: cover; display: block; }
     .stack { display: grid; gap: 1.2rem; }
-    .stack-item { min-height: 312px; overflow: hidden; background: #e9ddcc; }
-    .stack-item img { width: 100%; height: 100%; object-fit: cover; display: block; }
+    .thumb {
+      border: 0;
+      background: #e9ddcc;
+      cursor: pointer;
+      min-height: 312px;
+      padding: 0;
+      overflow: hidden;
+      transition: outline-color .25s ease;
+      outline: 1px solid transparent;
+      outline-offset: 0;
+    }
+    .thumb img { width: 100%; height: 100%; object-fit: cover; display: block; }
+    .thumb[aria-current="true"] {
+      outline-color: color-mix(in srgb, var(--gold) 75%, #fff);
+    }
     .details { margin-top: 2rem; max-width: 58ch; }
     h1 { font-weight: 500; font-size: clamp(2rem, 4vw, 3.2rem); letter-spacing: .02em; margin-bottom: .5rem; }
     .subtitle { text-transform: uppercase; letter-spacing: .2em; font-size: .7rem; color: color-mix(in srgb, var(--ink) 70%, var(--gold)); margin-bottom: 1rem; }
     .description { line-height: 1.7; }
     @media (max-width: 900px) {
       .layout { grid-template-columns: 1fr; }
-      .hero, .stack-item { min-height: 420px; }
+      .hero, .thumb { min-height: 420px; }
     }
   </style>
 </head>
@@ -47,15 +60,18 @@
 
     <section class="layout" aria-label="Cashmere turtleneck gallery">
       <figure class="hero">
-        <img src="22410f72-c37a-4592-b912-82ee14e32144.png" alt="Standing cashmere sweater look" />
+        <img id="main-image" src="turtleneck-main.png" alt="Standing cashmere sweater look" />
       </figure>
-      <div class="stack">
-        <figure class="stack-item">
-          <img src="ChatGPT Image 6 трав. 2026 р., 16_01_33.png" alt="Close-up portrait of cashmere knit" />
-        </figure>
-        <figure class="stack-item">
-          <img src="campaign2.png" alt="Seated lifestyle cashmere styling" />
-        </figure>
+      <div class="stack" role="list" aria-label="Cashmere turtleneck image options">
+        <button class="thumb" type="button" aria-current="true" data-src="turtleneck-main.png" data-alt="Standing cashmere sweater look">
+          <img src="turtleneck-main.png" alt="Standing portrait thumbnail" />
+        </button>
+        <button class="thumb" type="button" data-src="turtleneck-close.png" data-alt="Close-up portrait of cashmere knit texture">
+          <img src="turtleneck-close.png" alt="Close-up portrait thumbnail" />
+        </button>
+        <button class="thumb" type="button" data-src="turtleneck-lounge.png" data-alt="Seated lifestyle portrait in cashmere styling">
+          <img src="turtleneck-lounge.png" alt="Seated lifestyle portrait thumbnail" />
+        </button>
       </div>
     </section>
 
@@ -65,5 +81,20 @@
       <p class="description">A luxury edit in three perspectives: the standing silhouette for form, the close portrait for texture, and the seated lifestyle frame for movement. Crafted from fine Mongolian cashmere with a soft hand and clean drape for timeless winter dressing.</p>
     </section>
   </div>
+
+  <script>
+    const mainImage = document.getElementById('main-image');
+    const thumbnails = document.querySelectorAll('.thumb');
+
+    thumbnails.forEach((thumb) => {
+      thumb.addEventListener('click', () => {
+        mainImage.src = thumb.dataset.src;
+        mainImage.alt = thumb.dataset.alt;
+
+        thumbnails.forEach((item) => item.removeAttribute('aria-current'));
+        thumb.setAttribute('aria-current', 'true');
+      });
+    });
+  </script>
 </body>
 </html>
