@@ -1,532 +1,302 @@
 <!DOCTYPE html>
-<html lang="en">
+<html lang="uk">
 <head>
   <meta charset="UTF-8" />
   <meta name="viewport" content="width=device-width, initial-scale=1.0" />
-  <title>Maison Erdene — Mongolian Cashmere</title>
+  <title>Veranda Residence — лендинг нерухомості</title>
   <style>
     :root {
-      --cream: #f5f0e8;
-      --beige: #e7dccd;
-      --espresso: #2c1f1a;
-      --charcoal: #121212;
-      --gold: #b89a62;
-      --ivory: #fcf9f4;
-      --max-width: 1240px;
+      --sand: #f4efe6;
+      --stone: #d8ccba;
+      --olive: #5f6f52;
+      --terracotta: #b86645;
+      --ink: #1d2520;
+      --muted: #697268;
+      --white: #fffaf3;
+      --max-width: 1180px;
       --ease: cubic-bezier(0.22, 1, 0.36, 1);
     }
 
-    * {
-      box-sizing: border-box;
-      margin: 0;
-      padding: 0;
-    }
-
-    html {
-      scroll-behavior: smooth;
-    }
+    * { box-sizing: border-box; margin: 0; padding: 0; }
+    html { scroll-behavior: smooth; }
 
     body {
-      font-family: "Times New Roman", "Baskerville", "Garamond", serif;
-      background: var(--ivory);
-      color: var(--espresso);
+      font-family: Inter, ui-sans-serif, system-ui, -apple-system, BlinkMacSystemFont, "Segoe UI", sans-serif;
+      background: var(--sand);
+      color: var(--ink);
       line-height: 1.6;
-      letter-spacing: 0.01em;
       overflow-x: hidden;
     }
 
-    img {
-      width: 100%;
-      height: 100%;
-      object-fit: cover;
-      display: block;
-    }
-
-    a {
-      color: inherit;
-      text-decoration: none;
-    }
-
-    .container {
-      width: min(92%, var(--max-width));
-      margin: 0 auto;
-    }
+    a { color: inherit; text-decoration: none; }
+    img { display: block; width: 100%; height: 100%; object-fit: cover; }
+    .container { width: min(92%, var(--max-width)); margin: 0 auto; }
 
     .nav-wrap {
       position: fixed;
-      top: 0;
-      left: 0;
-      width: 100%;
-      z-index: 30;
-      backdrop-filter: blur(8px);
-      background: color-mix(in srgb, var(--ivory) 78%, transparent);
-      border-bottom: 1px solid color-mix(in srgb, var(--gold) 30%, transparent);
+      inset: 0 0 auto;
+      z-index: 20;
+      background: rgba(255, 250, 243, 0.88);
+      backdrop-filter: blur(18px);
+      border-bottom: 1px solid rgba(95, 111, 82, 0.16);
     }
 
     nav {
-      height: 86px;
+      height: 78px;
       display: flex;
       align-items: center;
       justify-content: space-between;
-      gap: 1rem;
+      gap: 1.5rem;
     }
 
-    .brand {
-      display: flex;
-      flex-direction: column;
-      line-height: 1.1;
-      min-width: max-content;
-    }
-
-    .brand .name {
-      font-size: clamp(1.1rem, 2.2vw, 1.5rem);
-      letter-spacing: 0.2em;
-      text-transform: uppercase;
-    }
-
-    .brand .sub {
-      font-size: 0.7rem;
-      text-transform: uppercase;
-      letter-spacing: 0.24em;
-      color: color-mix(in srgb, var(--espresso) 70%, var(--gold));
-      margin-top: 0.3rem;
-    }
+    .brand { display: grid; line-height: 1.05; }
+    .brand strong { font-size: clamp(1rem, 2vw, 1.35rem); letter-spacing: -0.03em; }
+    .brand span { color: var(--muted); font-size: 0.72rem; text-transform: uppercase; letter-spacing: 0.18em; }
 
     .nav-links {
       display: flex;
-      gap: clamp(1rem, 2vw, 2.1rem);
+      align-items: center;
+      gap: clamp(0.9rem, 2vw, 1.8rem);
       list-style: none;
-      text-transform: uppercase;
-      letter-spacing: 0.12em;
-      font-size: 0.78rem;
+      color: var(--muted);
+      font-size: 0.9rem;
     }
 
-    .nav-links a {
-      position: relative;
-      padding-bottom: 0.15rem;
-      transition: color 260ms var(--ease);
-    }
-
-    .nav-links a::after {
-      content: "";
-      position: absolute;
-      left: 0;
-      bottom: 0;
-      width: 100%;
-      height: 1px;
-      background: var(--gold);
-      transform: scaleX(0);
-      transform-origin: right;
-      transition: transform 350ms var(--ease);
-    }
-
-    .nav-links a:hover {
-      color: var(--gold);
-    }
-
-    .nav-links a:hover::after {
-      transform: scaleX(1);
-      transform-origin: left;
-    }
-
-    .hero {
-      min-height: 100svh;
-      position: relative;
-      margin-top: 86px;
-      isolation: isolate;
-      background: #1c130f;
-    }
-
-    .hero img {
-      position: absolute;
-      inset: 0;
-      z-index: -2;
-      filter: brightness(0.56) saturate(0.86);
-      animation: slowZoom 16s var(--ease) infinite alternate;
-    }
-
-    .hero::after {
-      content: "";
-      position: absolute;
-      inset: 0;
-      background: linear-gradient(180deg, rgba(20, 13, 10, 0.44) 15%, rgba(20, 13, 10, 0.75) 100%);
-      z-index: -1;
-    }
-
-    .hero-content {
-      min-height: calc(100svh - 86px);
-      display: grid;
-      align-content: end;
-      padding: clamp(4rem, 8vw, 7rem) 0;
-      color: #fdf7f0;
-      gap: 1.2rem;
-    }
-
-    .eyebrow {
-      text-transform: uppercase;
-      letter-spacing: 0.24em;
-      font-size: 0.72rem;
-      color: color-mix(in srgb, #fff 74%, var(--gold));
-    }
-
-    h1 {
-      font-size: clamp(2.3rem, 7vw, 6rem);
-      line-height: 0.92;
-      font-weight: 500;
-      letter-spacing: 0.02em;
-      max-width: 12ch;
-      text-wrap: balance;
-    }
-
-    .hero-copy {
-      max-width: 50ch;
-      font-size: clamp(0.95rem, 1.4vw, 1.1rem);
-      color: color-mix(in srgb, #fff 88%, var(--beige));
-    }
+    .nav-links a:hover { color: var(--olive); }
 
     .btn {
       display: inline-flex;
       align-items: center;
       justify-content: center;
-      padding: 0.85rem 1.8rem;
-      text-transform: uppercase;
-      letter-spacing: 0.15em;
-      font-size: 0.72rem;
-      border: 1px solid color-mix(in srgb, var(--gold) 64%, #fff);
-      color: #fff;
-      background: color-mix(in srgb, var(--espresso) 24%, transparent);
-      transition: transform 300ms var(--ease), background 300ms var(--ease), color 300ms var(--ease), box-shadow 300ms var(--ease);
-      width: fit-content;
+      gap: 0.55rem;
+      min-height: 48px;
+      padding: 0.85rem 1.25rem;
+      border-radius: 999px;
+      background: var(--ink);
+      color: var(--white);
+      font-weight: 700;
+      border: 1px solid transparent;
+      box-shadow: 0 18px 36px rgba(29, 37, 32, 0.16);
+      transition: transform 260ms var(--ease), background 260ms var(--ease), color 260ms var(--ease);
     }
 
-    .btn:hover {
-      transform: translateY(-2px);
-      background: var(--gold);
-      color: #1a120f;
-      box-shadow: 0 12px 30px rgba(25, 17, 11, 0.25);
-    }
+    .btn:hover { transform: translateY(-2px); background: var(--olive); }
+    .btn.secondary { background: transparent; color: var(--ink); border-color: rgba(29, 37, 32, 0.18); box-shadow: none; }
+    .btn.secondary:hover { background: var(--white); }
 
-    section {
-      padding: clamp(4rem, 8vw, 7rem) 0;
-    }
-
-    .section-head {
-      display: flex;
-      justify-content: space-between;
-      align-items: end;
-      gap: 1.6rem;
-      margin-bottom: 2.1rem;
-    }
-
-    h2 {
-      font-size: clamp(1.5rem, 3.8vw, 3rem);
-      line-height: 1;
-      font-weight: 500;
-      letter-spacing: 0.02em;
-    }
-
-    .section-kicker {
-      text-transform: uppercase;
-      letter-spacing: 0.22em;
-      font-size: 0.68rem;
-      color: color-mix(in srgb, var(--espresso) 75%, var(--gold));
-    }
-
-    .campaign-grid {
-      display: grid;
-      grid-template-columns: repeat(3, 1fr);
-      gap: clamp(0.8rem, 1.8vw, 1.3rem);
-    }
-
-    .campaign-card {
-      overflow: hidden;
-      background: var(--beige);
-      min-height: clamp(360px, 48vw, 590px);
+    .hero {
       position: relative;
+      min-height: 100svh;
+      padding: 138px 0 70px;
+      isolation: isolate;
+      background:
+        linear-gradient(115deg, rgba(29,37,32,0.78), rgba(29,37,32,0.14) 58%, rgba(244,239,230,0.9)),
+        url("hero.png") center / cover;
+      color: var(--white);
     }
 
-    .campaign-card img {
-      transition: transform 900ms var(--ease), filter 700ms var(--ease);
-      filter: contrast(0.95) saturate(0.87);
+    .hero::after {
+      content: "";
+      position: absolute;
+      inset: auto 0 0;
+      height: 34%;
+      background: linear-gradient(180deg, transparent, var(--sand));
+      z-index: -1;
     }
 
-    .campaign-card:hover img {
-      transform: scale(1.06);
-      filter: contrast(1) saturate(1);
+    .hero-grid { display: grid; grid-template-columns: 1.08fr 0.92fr; align-items: end; gap: clamp(2rem, 5vw, 5rem); min-height: calc(100svh - 208px); }
+    .eyebrow { text-transform: uppercase; letter-spacing: 0.2em; font-size: 0.76rem; color: #eadac4; font-weight: 800; }
+    h1 { max-width: 10ch; margin: 1rem 0 1.2rem; font-size: clamp(3rem, 8vw, 7.3rem); line-height: 0.9; letter-spacing: -0.075em; }
+    .hero-copy { max-width: 58ch; font-size: clamp(1rem, 1.4vw, 1.25rem); color: rgba(255, 250, 243, 0.86); }
+    .hero-actions { display: flex; flex-wrap: wrap; gap: 0.8rem; margin-top: 1.8rem; }
+
+    .lead-card {
+      align-self: end;
+      background: rgba(255, 250, 243, 0.94);
+      color: var(--ink);
+      border-radius: 28px;
+      padding: clamp(1.2rem, 3vw, 1.8rem);
+      box-shadow: 0 28px 70px rgba(29, 37, 32, 0.22);
     }
 
-    .featured {
-      background: linear-gradient(135deg, var(--cream), #f9f6f1);
-      border-top: 1px solid color-mix(in srgb, var(--gold) 24%, transparent);
-      border-bottom: 1px solid color-mix(in srgb, var(--gold) 24%, transparent);
+    .lead-card h2 { font-size: clamp(1.45rem, 2.6vw, 2.1rem); line-height: 1.05; letter-spacing: -0.04em; }
+    .stats { display: grid; grid-template-columns: repeat(3, 1fr); gap: 0.8rem; margin-top: 1.5rem; }
+    .stat { padding: 1rem; border-radius: 18px; background: var(--sand); }
+    .stat strong { display: block; font-size: clamp(1.35rem, 3vw, 2rem); line-height: 1; }
+    .stat span { color: var(--muted); font-size: 0.82rem; }
+
+    section { padding: clamp(4rem, 8vw, 7rem) 0; }
+    .section-head { display: flex; justify-content: space-between; gap: 1.5rem; align-items: end; margin-bottom: 2rem; }
+    .section-head h2 { max-width: 12ch; font-size: clamp(2rem, 5vw, 4.2rem); line-height: 0.96; letter-spacing: -0.06em; }
+    .section-head p { max-width: 48ch; color: var(--muted); }
+
+    .features { display: grid; grid-template-columns: repeat(4, 1fr); gap: 1rem; }
+    .feature { min-height: 240px; padding: 1.25rem; border-radius: 28px; background: var(--white); border: 1px solid rgba(95, 111, 82, 0.14); display: flex; flex-direction: column; justify-content: space-between; }
+    .feature .icon { width: 46px; height: 46px; border-radius: 50%; display: grid; place-items: center; background: rgba(184, 102, 69, 0.13); color: var(--terracotta); font-weight: 900; }
+    .feature h3 { margin-top: 2rem; font-size: 1.25rem; letter-spacing: -0.03em; }
+    .feature p { margin-top: 0.45rem; color: var(--muted); }
+
+    .gallery { background: var(--ink); color: var(--white); }
+    .gallery .section-head p { color: rgba(255, 250, 243, 0.72); }
+    .gallery-grid { display: grid; grid-template-columns: 1.2fr 0.8fr; gap: 1rem; }
+    .visual { min-height: 520px; border-radius: 32px; overflow: hidden; background: var(--stone); position: relative; }
+    .visual.small { min-height: 252px; }
+    .visual::after { content: attr(data-label); position: absolute; left: 1rem; bottom: 1rem; padding: 0.5rem 0.8rem; border-radius: 999px; background: rgba(29,37,32,0.72); font-weight: 700; font-size: 0.86rem; }
+    .visual img { filter: saturate(0.78) contrast(0.98); }
+    .gallery-stack { display: grid; gap: 1rem; }
+
+    .plans { display: grid; grid-template-columns: repeat(3, 1fr); gap: 1rem; }
+    .plan { padding: 1.2rem; border-radius: 28px; background: var(--white); border: 1px solid rgba(29, 37, 32, 0.12); }
+    .plan-top { display: flex; justify-content: space-between; align-items: start; gap: 1rem; padding-bottom: 1rem; border-bottom: 1px solid rgba(29, 37, 32, 0.12); }
+    .plan h3 { font-size: 1.45rem; letter-spacing: -0.04em; }
+    .tag { border-radius: 999px; padding: 0.35rem 0.65rem; background: rgba(95,111,82,0.12); color: var(--olive); font-size: 0.78rem; font-weight: 800; }
+    .plan ul { list-style: none; display: grid; gap: 0.65rem; margin: 1rem 0 1.3rem; color: var(--muted); }
+    .plan li::before { content: "✓"; margin-right: 0.5rem; color: var(--olive); font-weight: 900; }
+    .price { font-size: 1.8rem; font-weight: 900; letter-spacing: -0.05em; }
+
+    .contact { background: linear-gradient(135deg, var(--olive), #33412f); color: var(--white); }
+    .contact-box { display: grid; grid-template-columns: 1fr 0.95fr; gap: 2rem; align-items: center; }
+    .contact h2 { font-size: clamp(2.2rem, 5vw, 4.6rem); line-height: 0.95; letter-spacing: -0.06em; max-width: 10ch; }
+    .contact p { color: rgba(255,250,243,0.78); margin-top: 1rem; max-width: 52ch; }
+    form { display: grid; gap: 0.9rem; padding: 1.2rem; border-radius: 28px; background: rgba(255,250,243,0.12); border: 1px solid rgba(255,250,243,0.18); }
+    input, select, textarea { width: 100%; border: 0; border-radius: 16px; padding: 1rem; font: inherit; color: var(--ink); background: var(--white); }
+    textarea { min-height: 120px; resize: vertical; }
+
+    footer { padding: 2rem 0; background: #111713; color: rgba(255,250,243,0.72); }
+    .footer-wrap { display: flex; justify-content: space-between; flex-wrap: wrap; gap: 1rem; }
+
+    @media (max-width: 920px) {
+      nav { height: auto; padding: 1rem 0; align-items: flex-start; flex-direction: column; }
+      .nav-links { flex-wrap: wrap; }
+      .hero { padding-top: 160px; }
+      .hero-grid, .contact-box, .gallery-grid { grid-template-columns: 1fr; }
+      .features, .plans { grid-template-columns: repeat(2, 1fr); }
     }
 
-    .products {
-      display: grid;
-      grid-template-columns: repeat(3, 1fr);
-      gap: clamp(1rem, 2vw, 1.5rem);
-    }
-
-    .product-card {
-      display: grid;
-      background: #fff;
-      border: 1px solid color-mix(in srgb, var(--gold) 24%, #ccc);
-      transition: transform 360ms var(--ease), box-shadow 360ms var(--ease);
-    }
-
-    .product-card:hover {
-      transform: translateY(-4px);
-      box-shadow: 0 16px 40px rgba(26, 17, 12, 0.11);
-    }
-
-    .product-image {
-      aspect-ratio: 4 / 5;
-      background: #ddd2c4;
-      overflow: hidden;
-    }
-
-    .product-image img {
-      transition: transform 700ms var(--ease);
-    }
-
-    .product-card:hover .product-image img {
-      transform: scale(1.05);
-    }
-
-    .product-body {
-      padding: 1.1rem 1rem 1.25rem;
-      display: grid;
-      gap: 0.2rem;
-    }
-
-    .product-name {
-      font-size: 1rem;
-    }
-
-    .price {
-      letter-spacing: 0.08em;
-      color: color-mix(in srgb, var(--espresso) 76%, var(--gold));
-      font-size: 0.88rem;
-      text-transform: uppercase;
-    }
-
-    .about {
-      display: grid;
-      grid-template-columns: 1.2fr 1fr;
-      gap: clamp(1.5rem, 4vw, 4rem);
-      align-items: start;
-    }
-
-    .about p {
-      font-size: clamp(1rem, 1.3vw, 1.1rem);
-      max-width: 56ch;
-      color: color-mix(in srgb, var(--espresso) 87%, #4b332a);
-    }
-
-    .about-panel {
-      background: var(--charcoal);
-      color: #f4ede3;
-      padding: clamp(1.5rem, 4vw, 2.3rem);
-      border-left: 3px solid var(--gold);
-    }
-
-    .about-panel p {
-      color: color-mix(in srgb, #fff 86%, var(--beige));
-      font-size: 0.98rem;
-    }
-
-    .social {
-      display: flex;
-      flex-wrap: wrap;
-      gap: 0.9rem;
-      margin-top: 1.4rem;
-    }
-
-    .social .btn {
-      color: var(--espresso);
-      background: transparent;
-    }
-
-    .social .btn:hover {
-      color: #17120f;
-      background: var(--gold);
-    }
-
-    footer {
-      background: #100c0a;
-      color: #e9ddcc;
-      padding: 2.4rem 0;
-      border-top: 1px solid color-mix(in srgb, var(--gold) 45%, transparent);
-    }
-
-    .footer-wrap {
-      display: flex;
-      justify-content: space-between;
-      align-items: center;
-      gap: 1rem;
-      flex-wrap: wrap;
-    }
-
-    .footer-links {
-      display: flex;
-      gap: 1.2rem;
-      text-transform: uppercase;
-      letter-spacing: 0.13em;
-      font-size: 0.72rem;
-    }
-
-    @keyframes slowZoom {
-      from { transform: scale(1.02); }
-      to { transform: scale(1.12); }
-    }
-
-    @media (max-width: 980px) {
-      .campaign-grid { grid-template-columns: repeat(2, 1fr); }
-      .products { grid-template-columns: repeat(2, 1fr); }
-      .about { grid-template-columns: 1fr; }
-      nav { height: auto; padding: 1rem 0; align-items: start; flex-direction: column; }
-      .hero { margin-top: 126px; }
-    }
-
-    @media (max-width: 640px) {
-      .nav-links {
-        width: 100%;
-        display: grid;
-        grid-template-columns: repeat(3, 1fr);
-        gap: 0.8rem 0.5rem;
-      }
-      h1 { max-width: 9ch; }
-      .campaign-grid,
-      .products { grid-template-columns: 1fr; }
-      .section-head { flex-direction: column; align-items: start; }
-      .hero-content { padding-bottom: 3.4rem; }
+    @media (max-width: 620px) {
+      .nav-links .hide-mobile { display: none; }
+      .features, .plans, .stats { grid-template-columns: 1fr; }
+      .hero-actions { align-items: stretch; flex-direction: column; }
+      .btn { width: 100%; }
+      .section-head { align-items: start; flex-direction: column; }
+      .visual, .visual.small { min-height: 340px; }
     }
   </style>
 </head>
 <body>
   <header class="nav-wrap">
     <div class="container">
-      <nav>
-        <a class="brand" href="#">
-          <span class="name">Maison Erdene</span>
-          <span class="sub">Mongolian Cashmere Maison</span>
+      <nav aria-label="Головна навігація">
+        <a class="brand" href="#top" aria-label="Veranda Residence">
+          <strong>Veranda Residence</strong>
+          <span>життя біля парку</span>
         </a>
         <ul class="nav-links">
-          <li><a href="#women">Women</a></li>
-          <li><a href="#men">Men</a></li>
-          <li><a href="#accessories">Accessories</a></li>
-          <li><a href="#about">About</a></li>
-          <li><a href="#contact">Contact</a></li>
+          <li><a href="#benefits">Переваги</a></li>
+          <li><a href="#gallery">Галерея</a></li>
+          <li><a href="#plans">Планування</a></li>
+          <li class="hide-mobile"><a href="#contact">Контакти</a></li>
         </ul>
+        <a class="btn" href="#contact">Записатися на перегляд</a>
       </nav>
     </div>
   </header>
 
-  <main>
-    <section class="hero" id="women">
-      <img src="hero.png" alt="Maison Erdene campaign portrait" />
-      <div class="container hero-content">
-        <p class="eyebrow">Autumn / Winter Capsule 2026-2027</p>
-        <h1>Quiet Power. Noble Cashmere.</h1>
-        <p class="hero-copy">Maison Erdene curates timeless Mongolian cashmere for women and men who value rare materials, discreet elegance, and European atelier refinement.</p>
-        <a href="#collection" class="btn">Discover Collection</a>
-      </div>
-    </section>
-
-    <section id="campaign">
-      <div class="container">
-        <div class="section-head">
-          <div>
-            <p class="section-kicker">Autumn / Winter Collection</p>
-          </div>
-          <p class="section-kicker">Maison Erdene / Editorial 01</p>
-        </div>
-       <div class="campaign-grid">
-  <article class="campaign-card">
-    <img src="hero.png" alt="Cashmere lookbook editorial one" />
-  </article>
-
-  <article class="campaign-card">
-    <img src="hero.png" alt="Mongolian mountains editorial" />
-  </article>
-
-  <article class="campaign-card">
-    <img src="campaign2.png" alt="Cashmere editorial model" />
-  </article>
-</div>    </section>
-
-    <section class="featured" id="collection">
-      <div class="container">
-        <div class="section-head">
-          <div>
-            <p class="section-kicker">Featured Collection</p>
-            <h2>Cashmere Essentials</h2>
-          </div>
-          <a class="btn" href="#">View All</a>
-        </div>
-
-        <div class="products" id="men">
-          <article class="product-card">
-            <a href="product-turtleneck.html">
-<div class="product-image"><img src="turtleneck-main.png" alt="Cashmere Sweater" /></div>
-            <div class="product-body"><h3 class="product-name">Cashmere Sweater</h3><p class="price">€320</p></div>
-            </a>
-          </article>
-          <article class="product-card">
-            <a href="product-turtleneck.html">
-<div class="product-image"><img src="turtleneck-close.png" alt="Cashmere Cardigan" /></div>
-            <div class="product-body"><h3 class="product-name">Cashmere Cardigan</h3><p class="price">€420</p></div>
-            </a>
-          </article>
-          <article class="product-card" id="accessories">
-            <a href="product-turtleneck.html">
-<div class="product-image"><img src="turtleneck-lounge.png" alt="Cashmere Scarf" /></div>
-            <div class="product-body"><h3 class="product-name">Cashmere Scarf</h3><p class="price">€120</p></div>
-            </a>
-          </article>
-          <article class="product-card">
-            <div class="product-image"><img src="hero.png" alt="Lounge Set" /></div>
-            <div class="product-body"><h3 class="product-name">Lounge Set</h3><p class="price">€540</p></div>
-          </article>
-          <article class="product-card">
-            <div class="product-image"><img src="hero.png" alt="Wool Coat" /></div>
-            <div class="product-body"><h3 class="product-name">Wool Coat</h3><p class="price">€690</p></div>
-          </article>
-          <article class="product-card">
-            <div class="product-image"><img src="hero.png" alt="Silk Evening Set" /></div>
-            <div class="product-body"><h3 class="product-name">Silk Evening Set</h3><p class="price">€780</p></div>
-          </article>
-        </div>
-      </div>
-    </section>
-
-    <section id="about">
-      <div class="container about">
+  <main id="top">
+    <section class="hero" aria-label="Перший екран лендингу нерухомості">
+      <div class="container hero-grid">
         <div>
-          <p class="section-kicker">Maison Heritage</p>
-          <h2>Born in Mongolia, Refined for the World</h2>
-          <p>Our fibers are sourced from nomadic herding communities in Mongolia where centuries of craftsmanship meet the world’s finest natural cashmere. Each Maison Erdene silhouette is designed with restrained European tailoring and a quiet old-money sensibility—made to be worn for years, not seasons.</p>
+          <p class="eyebrow">Преміальні квартири у Києві</p>
+          <h1>Дім, який дихає світлом.</h1>
+          <p class="hero-copy">Veranda Residence — камерний житловий комплекс із власним садом, терасами та сервісом консьєржа для тих, хто хоче міський ритм без шуму мегаполіса.</p>
+          <div class="hero-actions">
+            <a class="btn" href="#plans">Обрати квартиру</a>
+            <a class="btn secondary" href="#gallery">Дивитися простір</a>
+          </div>
         </div>
-        <aside class="about-panel" id="contact">
-          <p class="section-kicker">Private Client Services</p>
-          <p>Discover exclusive drops, bespoke fittings, and seasonal collaborations via our private circle. Follow our visual diary and request showroom appointments in Paris, Milan, and Ulaanbaatar.</p>
-          <div class="social">
-            <a href="#" class="btn">Instagram</a>
-            <a href="#" class="btn">Collaborations</a>
+        <aside class="lead-card" aria-label="Ключові показники проєкту">
+          <p class="eyebrow">Старт продажів</p>
+          <h2>Квартири від 48 до 142 м² з панорамними вікнами та приватними лоджіями.</h2>
+          <div class="stats">
+            <div class="stat"><strong>7 хв</strong><span>до метро</span></div>
+            <div class="stat"><strong>24/7</strong><span>сервіс</span></div>
+            <div class="stat"><strong>0%</strong><span>розтермінування</span></div>
           </div>
         </aside>
+      </div>
+    </section>
+
+    <section id="benefits">
+      <div class="container">
+        <div class="section-head">
+          <h2>Продумано до дрібниць.</h2>
+          <p>Ми зібрали все, що важливо для сучасного життя: тишу, безпеку, зелені зони, гнучкі планування та інфраструктуру на першому поверсі.</p>
+        </div>
+        <div class="features">
+          <article class="feature"><span class="icon">01</span><div><h3>Закритий двір-сад</h3><p>Ландшафтні алеї, дитячі зони та місця для ранкової кави без автомобілів.</p></div></article>
+          <article class="feature"><span class="icon">02</span><div><h3>Панорамні вікна</h3><p>Висота стелі 3 метри та тепле скління відкривають більше світла в кожній кімнаті.</p></div></article>
+          <article class="feature"><span class="icon">03</span><div><h3>Підземний паркінг</h3><p>Ліфт із паркінгу на поверх, зарядки для електрокарів і гостьові місця поруч.</p></div></article>
+          <article class="feature"><span class="icon">04</span><div><h3>Сервіс резидента</h3><p>Консьєрж, поштові кімнати, відеонагляд і мобільний застосунок для заявок.</p></div></article>
+        </div>
+      </div>
+    </section>
+
+    <section class="gallery" id="gallery">
+      <div class="container">
+        <div class="section-head">
+          <h2>Атмосфера приватної резиденції.</h2>
+          <p>Візуальна мова лендингу поєднує архітектурну стриманість, природні матеріали та теплий преміальний настрій.</p>
+        </div>
+        <div class="gallery-grid">
+          <figure class="visual" data-label="Фасад та вечірнє світло"><img src="campaign2.png" alt="Фасад сучасного житлового комплексу" /></figure>
+          <div class="gallery-stack">
+            <figure class="visual small" data-label="Лобі"><img src="turtleneck-main.png" alt="Преміальне лобі резиденції" /></figure>
+            <figure class="visual small" data-label="Тераси"><img src="turtleneck-lounge.png" alt="Зелена тераса квартири" /></figure>
+          </div>
+        </div>
+      </div>
+    </section>
+
+    <section id="plans">
+      <div class="container">
+        <div class="section-head">
+          <h2>Планування під ваш сценарій.</h2>
+          <p>Три популярні формати для інвестиції, сімейного життя або просторого пентхаусу з терасою.</p>
+        </div>
+        <div class="plans">
+          <article class="plan"><div class="plan-top"><h3>Smart</h3><span class="tag">48–62 м²</span></div><ul><li>1 спальня</li><li>Кухня-вітальня</li><li>Лоджія або балкон</li></ul><p class="price">від $82 000</p></article>
+          <article class="plan"><div class="plan-top"><h3>Family</h3><span class="tag">78–96 м²</span></div><ul><li>2–3 спальні</li><li>Майстер-санвузол</li><li>Вікна на дві сторони</li></ul><p class="price">від $136 000</p></article>
+          <article class="plan"><div class="plan-top"><h3>Skyline</h3><span class="tag">118–142 м²</span></div><ul><li>Власна тераса</li><li>Гардеробні кімнати</li><li>Панорама міста</li></ul><p class="price">від $248 000</p></article>
+        </div>
+      </div>
+    </section>
+
+    <section class="contact" id="contact">
+      <div class="container contact-box">
+        <div>
+          <p class="eyebrow">Персональна консультація</p>
+          <h2>Забронюйте найкращий вид.</h2>
+          <p>Залиште контакти — менеджер надішле презентацію, актуальні ціни та підбере планування під ваш бюджет.</p>
+        </div>
+        <form>
+          <input type="text" name="name" placeholder="Ваше ім’я" aria-label="Ваше ім’я" />
+          <input type="tel" name="phone" placeholder="Телефон" aria-label="Телефон" />
+          <select name="format" aria-label="Формат квартири">
+            <option>Цікавить Smart</option>
+            <option>Цікавить Family</option>
+            <option>Цікавить Skyline</option>
+          </select>
+          <textarea name="message" placeholder="Коментар або бажаний час дзвінка" aria-label="Коментар"></textarea>
+          <button class="btn" type="submit">Отримати добірку</button>
+        </form>
       </div>
     </section>
   </main>
 
   <footer>
     <div class="container footer-wrap">
-      <p>© 2026 Maison Erdene. All rights reserved.</p>
-      <div class="footer-links">
-        <a href="#">Shipping</a>
-        <a href="#">Returns</a>
-        <a href="#">Privacy</a>
-      </div>
+      <p>© 2026 Veranda Residence. Всі права захищено.</p>
+      <p>Відділ продажу: +380 44 000 00 00</p>
     </div>
   </footer>
 </body>
